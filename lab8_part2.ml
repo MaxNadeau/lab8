@@ -126,6 +126,7 @@ module MakeStack (Element: SERIALIZE) : (STACK with type element = Element.t) =
       List.fold_left f init s
 
     let serialize (s : stack) : string =
+      if s = empty then "" else
       let s =
       (fold_left (fun prev next -> (Element.serialize next) ^ ":" ^ prev) "" s)
       in String.sub s 0 (String.length s - 1)
