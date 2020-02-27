@@ -115,10 +115,10 @@ module MakeInterval (Endpoint : ORDERED_TYPE) =
        and `intvl2` *)
     let intersect (intvl1 : interval) (intvl2 : interval) : interval =
       match intvl1, intvl2 with
-      | a, Empty | Empty, a -> a
+      | a, Empty | Empty, a -> Empty
       | Interval (low1, high1), Interval (low2, high2) ->
         let low = if Endpoint.compare low1 low2 < 0 then low2 else low1 in
-        let high = if Endpoint.compare high1 high2 < 0 then low2 else low1 in
+        let high = if Endpoint.compare high1 high2 < 0 then high1 else high2 in
         create low high
 
     end ;;
@@ -220,10 +220,10 @@ module MakeSafeInterval (Endpoint : ORDERED_TYPE) : INTERVAL =
        and `intvl2` *)
     let intersect (intvl1 : interval) (intvl2 : interval) : interval =
       match intvl1, intvl2 with
-      | a, Empty | Empty, a -> a
+      | a, Empty | Empty, a -> Empty
       | Interval (low1, high1), Interval (low2, high2) ->
         let low = if Endpoint.compare low1 low2 < 0 then low2 else low1 in
-        let high = if Endpoint.compare high1 high2 < 0 then low2 else low1 in
+        let high = if Endpoint.compare high1 high2 < 0 then high1 else high2 in
         create low high
 
     end ;;
@@ -320,10 +320,10 @@ module MakeBestInterval (Endpoint : ORDERED_TYPE) :
        and `intvl2` *)
     let intersect (intvl1 : interval) (intvl2 : interval) : interval =
       match intvl1, intvl2 with
-      | a, Empty | Empty, a -> a
+      | a, Empty | Empty, a -> Empty
       | Interval (low1, high1), Interval (low2, high2) ->
         let low = if Endpoint.compare low1 low2 < 0 then low2 else low1 in
-        let high = if Endpoint.compare high1 high2 < 0 then low2 else low1 in
+        let high = if Endpoint.compare high1 high2 < 0 then high1 else high2 in
         create low high
 
     end ;;
